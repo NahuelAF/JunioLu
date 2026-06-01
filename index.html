@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Para Lulu ❤️ – Un regalo del corazón</title>
+  <meta name="description" content="Un pequeño mundo mágico creado especialmente para Lulu, lleno de amor, flores y corazones." />
+  <meta property="og:title"       content="Para Lulu ❤️" />
+  <meta property="og:description" content="Un regalo digital hecho con todo el amor del mundo." />
+  <meta property="og:type"        content="website" />
+
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Audio de fondo (pon tu song.mp3 en la misma carpeta) -->
+  <audio id="bgAudio" loop>
+    <source src="song.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- ══ Contenedor principal ══════════════════════════════════════ -->
+  <div id="app">
+    <div id="slides">
+
+      <!-- ── SECCIÓN 1: PORTADA ────────────────────────────────── -->
+      <section id="portada" role="banner">
+        <canvas id="portada-canvas"></canvas>
+
+        <div class="portada-content">
+          <h1 class="portada-title">Hola Lulu ❤️</h1>
+
+          <div class="heart-wrap">
+            <span
+              class="big-heart"
+              id="bigHeart"
+              role="button"
+              tabindex="0"
+              aria-label="Toca para continuar"
+            >💗</span>
+            <div class="heart-ring"></div>
+            <div class="heart-ring2"></div>
+          </div>
+
+          <p class="hint">Toca el corazón para continuar ✨</p>
+        </div>
+      </section>
+
+      <!-- ── SECCIÓN 2: ÁRBOL DEL AMOR ────────────────────────── -->
+      <section id="arbol-section" aria-label="Árbol del amor">
+        <canvas id="arbol-canvas"></canvas>
+        <div id="ground-line"></div>
+
+        <!-- Contador -->
+        <div id="contador-wrap" aria-live="polite">
+          <p class="contador-frase">
+            Mira las estrellas,<br>mira cómo brillan por vos.
+          </p>
+          <div class="contador-grid">
+            <div class="cnt-box">
+              <span class="cnt-num" id="cDias">00</span>
+              <span class="cnt-label">días</span>
+            </div>
+            <div class="cnt-box">
+              <span class="cnt-num" id="cHoras">00</span>
+              <span class="cnt-label">horas</span>
+            </div>
+            <div class="cnt-box">
+              <span class="cnt-num" id="cMin">00</span>
+              <span class="cnt-label">min</span>
+            </div>
+            <div class="cnt-box">
+              <span class="cnt-num" id="cSeg">00</span>
+              <span class="cnt-label">seg</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botón carta -->
+        <button id="btn-carta" aria-label="Abrir carta">
+          💌 Carta
+        </button>
+      </section>
+
+    </div><!-- #slides -->
+  </div><!-- #app -->
+
+  <!-- ══ MODAL: CARTA ══════════════════════════════════════════════ -->
+  <div id="modal" role="dialog" aria-modal="true" aria-label="Carta de amor">
+    <div class="modal-inner">
+
+      <div class="modal-header">
+        <h2 class="carta-titulo">Para Lulu 💌</h2>
+        <button class="modal-close" aria-label="Cerrar">✕</button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="carta-texto">
+          <div id="carta-contenido"><span id="cursor-carta"></span></div>
+        </div>
+
+        <!-- Slider de fotos — reemplazá foto1.jpeg…foto6.jpeg -->
+        <div class="slider-wrap" aria-hidden="true">
+          <div class="slider-track-outer" id="sliderOuter">
+            <div class="slider-track" id="sliderTrack"></div>
+          </div>
+          <div class="slider-dots" id="sliderDots"></div>
+          <div class="slider-arrows">
+            <button class="s-arrow" id="sArrowPrev">‹</button>
+            <button class="s-arrow" id="sArrowNext">›</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Script principal -->
+  <script src="main.js"></script>
+
+</body>
+</html>
