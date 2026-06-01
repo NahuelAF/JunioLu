@@ -5,12 +5,18 @@
 /* ── AUDIO ───────────────────────────────────────────────── */
 const audio = document.getElementById('bgAudio');
 let audioOk = false;
+
 function tryAudio() {
-  if (!audioOk) { audio.play().catch(() => {}); audioOk = true; }
+  if (audioOk) return;
+
+  audio.play()
+    .then(() => {
+      audioOk = true;
+    })
+    .catch(() => {
+      audioOk = false;
+    });
 }
-document.addEventListener('click',      tryAudio, { once: true });
-document.addEventListener('touchstart', tryAudio, { once: true });
-audio.play().catch(() => {});
 
 /* ── NAVEGACIÓN — solo avanza, nunca retrocede ───────────── */
 let currentSlide = 0;
@@ -77,15 +83,29 @@ const bigHeart = document.getElementById('bigHeart');
 let arbolStarted = false;
 
 function goArbol() {
+
   tryAudio();
+
   goToSlide(1);
+
   if (!arbolStarted) {
     arbolStarted = true;
     setTimeout(initArbol, 650);
   }
 }
-bigHeart.addEventListener('click',   goArbol);
-bigHeart.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') goArbol(); });
+
+bigHeart.addEventListener('touchstart', e => {
+  e.preventDefault();
+  goArbol();
+}, { passive: false });
+
+bigHeart.addEventListener('click', goArbol);
+
+bigHeart.addEventListener('keydown', e => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    goArbol();
+  }
+});
 
 /* ── ÁRBOL DEL AMOR ──────────────────────────────────────── */
 function initArbol() {
